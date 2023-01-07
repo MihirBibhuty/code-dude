@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="roboLogo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CodeDude - Your Coding AI</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="app">
+
+    <!-- ****** Navbar ****** -->
+    <header class="container">
+      <nav>
+        <a href="" class="navbar-brand">
+          <i class="icon"><img class="icon" src="roboLogo.png" alt="CD"></i>
+        </a>
+
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">GitHub</a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">LinkenIn</a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">contacts</a>
+          </li>
+        </ul>
+
+        <div class="hamburger">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </nav>
+    </header>
+    <!-- ****** *** ****** -->
+
+    <div id="hero">
+      <img src="assets/robo.png" alt="CD">
+      <div class="details">
+        <div class="heading">CodeDude</div>
+        <div class="text">Hey there, Coder! Wanna come code with me?</div>
+      </div>
+    </div>
+    <div id="chat_container"></div>
+
+    <form>
+      <textarea name="prompt" cols="1" rows="1" placeholder="Ask CodeDude..."></textarea>
+      <button type="submit"><img src="assets/send.svg" alt="Send" /></button>
+    </form>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+
+</html>
