@@ -138,7 +138,7 @@ elment.addEventListener("click", () => {
 // Speech to Text JS
 const mic = document.getElementById('mic');
 mic.addEventListener("click", () => {
-    mic.innerHTML = `<div style="width: 30px; height: 30px; border-radius: 50%; border: 2px solid red;"><img src="assets/microphone.svg" alt="Mic" /></div>`;
+    mic.style.border = "2px solid red";
     let recognition = new webkitSpeechRecognition();
     if (!recognition) {
         alert("Your browser doesnot support Speech Recognition!");
@@ -147,7 +147,7 @@ mic.addEventListener("click", () => {
     recognition.onresult = (e) => {
         console.log(e);
         textarea.value = e.results[0][0].transcript;
-        mic.innerHTML = `<img src="assets/microphone.svg" alt="Mic" />`;
+        mic.style.border = "none";
     }
     recognition.start();
 })
