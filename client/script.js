@@ -140,9 +140,11 @@ const mic = document.getElementById('mic');
 mic.addEventListener("click", () => {
     mic.style.border = "2px solid red";
     let recognition = new webkitSpeechRecognition();
+
     if (!recognition) {
         alert("Your browser doesnot support Speech Recognition!");
     }
+    
     recognition.lang = "en-GB";
     recognition.onresult = (e) => {
         console.log(e);

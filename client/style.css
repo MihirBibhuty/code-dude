@@ -428,6 +428,12 @@ form img {
       font-size: 1rem;
     }
 
+    /* form textbox */
+    form {
+      width: 95%;
+      margin: 8px;
+    }
+
     /* Mic icon */
     #mic {
       width: 40px;
