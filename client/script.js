@@ -112,7 +112,7 @@ const handleSubmit = async (e) => {
         typeText(messageDiv, parsedData);
     } else {
         const err = await response.text();
-        messageDiv.innerHTML = `<div style="color: red">Something went wrong</div>`;
+        messageDiv.innerHTML = `<div style="color: red">Something went wrong!</div>`;
         alert(err);
     }
 }
@@ -125,12 +125,29 @@ form.addEventListener("keyup", (e) => {
 })
 
 
-
-
+// Navbar JS
 const elment = document.querySelector('.hamburger');
 const elment1 = document.querySelector('.nav-list');
 
 elment.addEventListener("click", () => {
     elment.classList.toggle('active');
     elment1.classList.toggle('active');
+})
+
+
+// Speech to Text JS
+const mic = document.getElementById('mic');
+mic.addEventListener("click", () => {
+    mic.innerHTML = `<div style="width: 30px; height: 30px; border-radius: 50%; border: 2px solid red;"><img src="assets/microphone.svg" alt="Mic" /></div>`;
+    let recognition = new webkitSpeechRecognition();
+    if (!recognition) {
+        alert("Your browser doesnot support Speech Recognition!");
+    }
+    recognition.lang = "en-GB";
+    recognition.onresult = (e) => {
+        console.log(e);
+        textarea.value = e.results[0][0].transcript;
+        mic.innerHTML = `<img src="assets/microphone.svg" alt="Mic" />`;
+    }
+    recognition.start();
 })

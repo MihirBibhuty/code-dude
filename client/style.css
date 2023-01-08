@@ -361,7 +361,17 @@ button {
 
 form img {
   width: 20px;
-  /* height: 30px; */
+  height: 30px;
+}
+
+#mic {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -416,5 +426,11 @@ form img {
     
     #hero .text {
       font-size: 1rem;
+    }
+
+    /* Mic icon */
+    #mic {
+      width: 40px;
+      height: 30px;
     }
 }
