@@ -9,6 +9,7 @@ textarea.addEventListener("keyup", (e) => {
     textarea.style.height = `${scHeight}px`;
 });
 
+let readOutAloud = false;
 const form = document.querySelector('form');
 const chatContainer = document.querySelector('#chat_container');
 
@@ -110,6 +111,10 @@ const handleSubmit = async (e) => {
         const parsedData = data.bot.trim();
 
         typeText(messageDiv, parsedData);
+        console.log(readOutAloud);
+        if (readOutAloud === true) {
+            readOut(parsedData);
+        }
     } else {
         const err = await response.text();
         messageDiv.innerHTML = `<div style="color: red">Something went wrong!</div>`;
@@ -137,19 +142,61 @@ elment.addEventListener("click", () => {
 
 // Speech to Text JS
 const mic = document.getElementById('mic');
-mic.addEventListener("click", () => {
-    mic.style.border = "2px solid red";
-    let recognition = new webkitSpeechRecognition();
 
-    if (!recognition) {
-        alert("Your browser doesnot support Speech Recognition!");
+try {
+    const speechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognition = new speechRecognition();
+
+    recognition.onstart = () => {
+        console.log("Voice is activated");
     }
-    
-    recognition.lang = "en-GB";
+    // recognition.onspeechend = () => {}
+
     recognition.onresult = (e) => {
         console.log(e);
-        textarea.value = e.results[0][0].transcript;
+        const transcript = e.results[0][0].transcript;
+        textarea.value = transcript;
         mic.style.border = "none";
+        readOutAloud = true;
+        handleSubmit(e);
     }
-    recognition.start();
-})
+
+    // add event listner to the mic button
+    mic.addEventListener("click", () => {
+        mic.style.border = "2px solid red";
+        recognition.start();
+    })
+
+} catch (err) {
+    console.log(err);
+    alert(err);
+}
+
+// mic.addEventListener("click", () => {
+//     mic.style.border = "2px solid red";
+//     let recognition = new webkitSpeechRecognition();
+
+//     if (!recognition) {
+//         alert("Your browser doesnot support Speech Recognition!");
+//     }
+
+//     recognition.lang = "en-GB";
+//     recognition.onresult = (e) => {
+//         console.log(e);
+//         textarea.value = e.results[0][0].transcript;
+//         mic.style.border = "none";
+//     }
+//     recognition.start();
+// })
+
+const readOut = (message) => {
+    const speech = new SpeechSynthesisUtterance();
+    let voices = window.speechSynthesis.getVoices();
+    speech.text = message;
+    speech.volume = 1;
+    speech.rate = 2;
+    speech.pitch = 1;
+    speech.voice = voices.filter(function (voice) { return voice.name == 'Google UK English Female (en-GB)'; })[0];
+
+    window.speechSynthesis.speak(speech);
+}

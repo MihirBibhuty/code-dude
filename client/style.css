@@ -221,7 +221,7 @@ nav {
   align-items: center;
 }
 
-#hero .heading {
+#hero .heading, #hero .heading span {
   color: #fff;
   font-size: 5rem;
   font-family: 'Tomorrow', sans-serif;
